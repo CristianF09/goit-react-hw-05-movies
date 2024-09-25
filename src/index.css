@@ -4,8 +4,8 @@ body {
   padding: 0;
   height: 100%;
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f9; /* Light background color */
-  color: #333; /* Dark text */
+  background-color: #f4f4f9;
+  color: #333;
 }
 
 * {
