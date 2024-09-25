@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import './HomePage.module.css';
 
-const Header = () => (
-  <header>
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/movies">Movies</Link>
-    </nav>
-  </header>
-);
+const HomePage = () => {
+  return (
+    <div className="home-container">
+      <h1>Welcome to the Movie Search App</h1>
+      <p>Find the latest trending movies here!</p>
+    </div>
+  );
+};
 
-export default Header;
+export default HomePage;

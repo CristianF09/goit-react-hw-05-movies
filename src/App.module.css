@@ -1,7 +1,26 @@
-.container {
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0; /* Light background color */
+  color: #333; /* Dark text color */
+}
+
+header {
+  background-color: #3f51b5;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  flex-grow: 1;
   padding: 20px;
 }
 
-h1 {
-  color: #333;
+footer {
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px;
+  text-align: center;
 }
