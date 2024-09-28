@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieCredits } from '../services/api';
+import { getMovieCredits } from '../services/api'; // Ensure you're importing the correct function
 
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    fetchMovieCredits(movieId).then(data => setCast(data.cast)).catch(console.error);
+    getMovieCredits(movieId) // Change fetchMovieCredits to getMovieCredits
+      .then(data => setCast(data.cast))
+      .catch(console.error);
   }, [movieId]);
 
   return (

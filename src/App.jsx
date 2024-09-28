@@ -1,31 +1,29 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import Header from './components/Header'; // Ensure to import your Header component
 import './App.module.css';
 
-const HomePage = React.lazy(() => import('./components/HomePage'));
-const MoviesPage = React.lazy(() => import('./components/MoviesPage'));
-const MovieDetailsPage = React.lazy(() => import('./components/MovieDetailsPage'));
+const HomePage = lazy(() => import('./components/HomePage'));
+const MoviesPage = lazy(() => import('./components/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('./components/MovieDetailsPage'));
+const Cast = lazy(() => import('./components/Cast'));
+const Reviews = lazy(() => import('./components/Reviews'));
 
 const App = () => {
   return (
-    <div className="app-container">
-      <header>
-        <h1>Movie Search App</h1>
-      </header>
-      <main>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/movies" element={<MoviesPage />} />
-            <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
-            <Route path="*" element={<Navigate to="/" />} /> {}
-          </Routes>
-        </Suspense>
-      </main>
-      <footer>
-        <p>&copy; 2024 Movie Search App</p>
-      </footer>
-    </div>
+    <>
+      <Header />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="/movies/:movieId/cast" element={<Cast />} />
+          <Route path="/movies/:movieId/reviews" element={<Reviews />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 
