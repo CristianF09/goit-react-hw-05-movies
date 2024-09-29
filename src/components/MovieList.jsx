@@ -1,29 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import MovieItem from './MovieItem';
+import { fetchMovies } from './api'; 
+import MovieItem from './MovieItem'; 
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const getMovies = async () => {
+      setLoading(true); 
       try {
-        const response = await fetch(`https://api.example.com/movies?api_key=${process.env.REACT_APP_API_KEY55aa6ae40b9f98b84693daf1163a8814}`); // Replace with the actual API endpoint
-        const data = await response.json();
-        console.log(data);
-        setMovies(data.results || []); // Ensure results is an array
-      } catch (error) {
-        console.error('Error fetching movies:', error);
+        const moviesData = await fetchMovies();
+        setMovies(moviesData.results || []); 
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false); 
       }
     };
 
-    fetchMovies();
+    getMovies();
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>; 
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>; 
+  }
 
   return (
     <div>
       {Array.isArray(movies) && movies.length > 0 ? (
         movies.map(movie => (
-          <MovieItem key={movie.id} movie={movie} />
+          <MovieItem key={movie.id} movie={movie} /> 
         ))
       ) : (
         <p>No movies found.</p>

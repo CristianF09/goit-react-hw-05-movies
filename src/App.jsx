@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Header from './components/Header'; // Ensure to import your Header component
+import Header from './components/Header'; 
 import './App.module.css';
 
 const HomePage = lazy(() => import('./components/HomePage'));
