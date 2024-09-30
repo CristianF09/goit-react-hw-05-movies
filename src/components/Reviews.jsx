@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieReviews } from './api'; // Adjust the path as necessary
+import { getMovieReviews } from './api';
 import styles from './Reviews.module.css';
 
 const Reviews = () => {
-  const { movieId } = useParams();
+  const { movieId } = useParams(); 
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const movieReviews = await getMovieReviews(movieId);
-        setReviews(movieReviews);
+        const movieReviews = await getMovieReviews(movieId); 
+        setReviews(movieReviews.results || []); 
       } catch (err) {
-        console.error(err);
-        setError("Failed to fetch reviews. Please check your internet connection.");
+        setError('Failed to fetch reviews. Please try again later.');
+        console.error('Error fetching reviews:', err);
+      } finally {
+        setLoading(false); 
       }
     };
 
     fetchReviews();
   }, [movieId]);
 
+  if (loading) {
+    return <p>Loading reviews...</p>; 
+  }
+
   if (error) {
-    return <div className={styles.error}>{error}</div>;
+    return <div className={styles.error}>{error}</div>; 
   }
 
   if (reviews.length === 0) {
-    return <div className={styles.noReviews}>No reviews available for this movie.</div>;
+    return <div className={styles.noReviews}>No reviews available for this movie.</div>; 
   }
 
   return (

@@ -1,21 +1,24 @@
 .movieItem {
   list-style: none;
-  margin: 10px 0;
+  margin: 10px;
+  text-align: center;
+  width: 150px; /* Limit the width of the movie item */
 }
 
 .movieLink {
   text-decoration: none;
-  color: #000;
-  display: flex;
-  align-items: center;
+  color: inherit;
 }
 
 .moviePoster {
-  width: 100px;
-  height: auto;
-  margin-right: 10px;
+  width: 245px; /* Set width */
+  height: 365px; /* Set height */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio */
 }
 
 .movieTitle {
-  font-size: 1.2em;
+  margin-top: 10px;
+  font-size: 14px; /* Adjust font size */
+  font-weight: 500;
+  color: #333;
 }
