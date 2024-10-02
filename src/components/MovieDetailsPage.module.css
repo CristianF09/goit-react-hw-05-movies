@@ -1,0 +1,55 @@
+.movieDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.goBackButton {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: 100px;
+}
+
+.goBackButton:hover {
+  background-color: #0056b3;
+}
+
+.movieContent {
+  display: flex;
+  gap: 20px;
+}
+
+.moviePoster {
+  width: 245px;
+  height: 365px;
+  object-fit: cover;
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.additionalInfo {
+  margin-top: 20px;
+}
+
+.additionalButton {
+  margin-right: 10px;
+}
+
+.additionalButton button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.additionalButton button:hover {
+  background-color: #0056b3;
+}
