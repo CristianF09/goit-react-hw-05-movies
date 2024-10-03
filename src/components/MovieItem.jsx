@@ -13,14 +13,14 @@ const MovieItem = ({ movie }) => {
             src={`${IMAGE_BASE_URL}${movie.poster_path}`}
             alt={movie.title}
             className={styles.moviePoster}
-            style={{ width: '245px', height: '365px' }} // Inline styling for size
+            style={{ width: '245px', height: '365px' }} 
           />
         ) : (
           <img
             src='path/to/default/image.jpg' 
             alt='No Poster Available'
             className={styles.moviePoster}
-            style={{ width: '245px', height: '365px' }} // Inline styling for size
+            style={{ width: '245px', height: '365px' }} 
           />
         )}
         <h2 className={styles.movieTitle}>{movie.title || 'No Title Available'}</h2>

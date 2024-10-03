@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, Outlet, useNavigate } from 'react-router-dom';  
-import { getMovieDetails } from './api.js';
-import styles from './MovieDetailsPage.module.css'; // Import styles
+import { useParams, Link, Outlet, useNavigate } from 'react-router-dom';
+import { getMovieDetails } from './api.js'; 
+import styles from './MovieDetailsPage.module.css';  
 
 const MovieDetailsPage = () => {
-  const { movieId } = useParams();
+  const { movieId } = useParams(); 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // To handle "Go back"
+  const navigate = useNavigate();  
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        const data = await getMovieDetails(movieId);
-        setMovie(data);
+        const data = await getMovieDetails(movieId); 
+        setMovie(data); 
       } catch (error) {
         console.error('Error fetching movie details:', error);
         setError('Failed to load movie details. Please try again later.');
@@ -39,26 +39,25 @@ const MovieDetailsPage = () => {
   }
 
   return (
-    <div className={styles.movieDetailsContainer}>
-      {/* Go back button */}
-      <button className={styles.goBackButton} onClick={() => navigate(-1)}>
+    <div className={styles.container}>
+      
+      <button onClick={() => navigate(-1)} className={styles.goBackButton}>
         Go back
       </button>
 
-      <div className={styles.movieContent}>
-        {/* Movie Poster */}
+      <div className={styles.movieDetails}>
+
         {movie.poster_path ? (
-          <img
-            src={`http://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-            alt={movie.title}
-            className={styles.moviePoster}
+          <img 
+            src={`http://image.tmdb.org/t/p/w780/${movie.poster_path}`} 
+            alt={movie.title} 
+            className={styles.poster}
           />
         ) : (
           <p>No poster available.</p>
         )}
 
-        {/* Movie Info */}
-        <div className={styles.movieInfo}>
+        <div className={styles.info}>
           <h1>{movie.title}</h1>
           <p><strong>Overview:</strong> {movie.overview}</p>
           <p><strong>Release Date:</strong> {movie.release_date}</p>
@@ -66,15 +65,25 @@ const MovieDetailsPage = () => {
         </div>
       </div>
 
-      {/* Additional Information Section */}
       <div className={styles.additionalInfo}>
         <h2>Additional Information</h2>
-        <Link to="cast" className={styles.additionalButton}>
-          <button>Cast</button>
-        </Link>
-        <Link to="reviews" className={styles.additionalButton}>
-          <button>Reviews</button>
-        </Link>
+        <div className={styles.buttons}>
+          
+          <Link to="cast">
+            <button className={styles.castButton}>Cast</button>
+          </Link>
+          <Link to="reviews" style={{ marginLeft: '10px' }}>
+            <button className={styles.reviewsButton}>Reviews</button>
+          </Link>
+          
+          <button 
+            onClick={() => navigate(-1)} 
+            className={styles.goBackButton}
+            style={{ marginLeft: '10px' }}
+          >
+            Go back
+          </button>
+        </div>
       </div>
 
       <Outlet />

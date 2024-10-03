@@ -2,7 +2,7 @@
   list-style: none;
   margin: 10px;
   text-align: center;
-  width: 150px; /* Limit the width of the movie item */
+  width: 150px;
 }
 
 .movieLink {
@@ -11,14 +11,14 @@
 }
 
 .moviePoster {
-  width: 245px; /* Set width */
-  height: 365px; /* Set height */
-  object-fit: cover; /* Ensures the image maintains its aspect ratio */
+  width: 245px;
+  height: 365px;
+  object-fit: cover;
 }
 
 .movieTitle {
   margin-top: 10px;
-  font-size: 14px; /* Adjust font size */
+  font-size: 14px;
   font-weight: 500;
   color: #333;
 }
